@@ -1,5 +1,14 @@
 <h1>Create an event</h1>
 
+<% if @event.errors.any? %>
+<h2>Errors that prevent creation of events<h2>
+<ul>
+  <% @event.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+<% end %>
+</ul>
+<% end %>
+
 <%= form_for @event do |f| %>
   <p>
     <%= f.label :title %><br/>
