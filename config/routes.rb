@@ -8,6 +8,8 @@ Rails.application.routes.draw do
    root 'welcome#home'
    get 'courses', to: 'welcome#courses'
 
+   resources :events
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
