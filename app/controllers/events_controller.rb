@@ -1,6 +1,15 @@
 class EventsController < ApplicationController
+
+  def index
+    @events = Event.all
+  end
+
   def new
     @event = Event.new
+  end
+
+  def edit
+    @event = Event.find(params[:id])
   end
 
   def create
@@ -10,6 +19,16 @@ class EventsController < ApplicationController
       redirect_to event_path(@event)
     else
       render 'new'
+  end
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      flash[:notice] = "Event was sucessfully updated"
+      redirect_to event_path(@event)
+    else
+      render 'edit'
   end
   end
 
