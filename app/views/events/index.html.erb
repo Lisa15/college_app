@@ -1,20 +1,23 @@
-<h1>Listing all Events</h1>
-<p>
-<%= link_to "Create new Event", new_event_path %>
-</p>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-  </tr>
+<h1 align="center">Listing all Events</h1>
 
   <% @events.each do |event| %>
-  <tr>
-    <td><%= event.title %></td>
-    <td><%= event.description %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Show', event_path(event) %></td>
-    <td><%= link_to 'Delete', event_path(event), method: :delete, data: {confirm: "Are you sure?"} %></td>
-  </tr>
-  <% end %>
-</table>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="well well-lg">
+      <div class="event-title">
+        <%= link_to event.title, event_path(event) %>
+      </div>
+      <div class="event-body">
+
+        <%= truncate(event.description, length: 100) %>
+      </div>
+
+      <div class="event-actions">
+        <%= link_to "Edit this Event", edit_event_path(event), class: "btn btn-xs btn-primary" %>
+        <%= link_to "Delete this Event", event_path(event), method: :delete, data: {confirm: "Are you sure you want to delete the Event?"}, class: "btn btn-xs btn-danger" %>
+
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
